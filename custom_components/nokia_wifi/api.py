@@ -8,7 +8,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 _LOGGER = logging.getLogger(__name__)
 
-Device = namedtuple("Device", ["ip", "name", "connected_to"])
+Device = namedtuple("Device", ["ip", "name", "connected_to", "active"])
 
 
 class AuthFailure(Exception):
@@ -68,6 +68,7 @@ class HttpApi:
                     item["IPAddress"],
                     item["HostName"],
                     item["InterfaceType"],
+                    item["Active"] == 1
                 )
                 for item in data["devices_list"]
             }

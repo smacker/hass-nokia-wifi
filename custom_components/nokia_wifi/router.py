@@ -45,7 +45,7 @@ class NokiaWifiDeviceInfo:
                 self._name = dev_info.name or self._mac.replace(":", "_")
             self._ip_address = dev_info.ip
             self._last_activity = utc_point_in_time
-            self._connected = True
+            self._connected = dev_info.active
 
         elif self._connected:
             self._connected = (
